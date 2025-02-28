@@ -35,7 +35,6 @@ void Student::add() {
         cout << "Tree is empty! Create the root node first.\n";
         return;
     }
-
     Student *next = new Student;
     cout << "Enter Seat Number, Name, City, CET Score: ";
     cin >> next->seat_no >> next->name >> next->city >> next->cet;
@@ -45,7 +44,7 @@ void Student::add() {
 }
 
 void Student::insert(Student *root, Student *next) {
-    if (next->cet < root->cet) {
+    if (next->seat_no < root->seat_no) {  
         if (root->LC == NULL) {
             root->LC = next;
         } else {
@@ -59,6 +58,7 @@ void Student::insert(Student *root, Student *next) {
         }
     }
 }
+
 
 void Student::inorderR(Student *root) {
     if (root == NULL) return;
@@ -94,16 +94,17 @@ int Student::height(Student *root) {
 
 Student* Student::search(Student *root, int key) {
     if (root == NULL) return NULL;
-    if (root->seat_no == key){
-            cout << "\nSEAT NO\tNAME\tCITY\tCET";
-            cout << "\n" << root->seat_no << "\t" << root->name << "\t" << root->city << "\t" << root->cet << "\n";
-            return root;
+    if (root->seat_no == key) {
+        cout << "\nSEAT NO\tNAME\tCITY\tCET";
+        cout << "\n" << root->seat_no << "\t" << root->name << "\t" << root->city << "\t" << root->cet << "\n";
+        return root;
     }
     if (key < root->seat_no) {
         return search(root->LC, key);
     }
     return search(root->RC, key);
 }
+
 
 void Student::modifyStudent(Student *root, int roll) {
     Student *student = search(root, roll);
@@ -116,6 +117,7 @@ void Student::modifyStudent(Student *root, int roll) {
         cout << "\nStudent not found!\n";
     }
 }
+
 
 int main() {
     int choice;
